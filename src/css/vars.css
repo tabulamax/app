@@ -1,0 +1,4 @@
+:root {
+  --min-table-width: calc(34ch + 6em);
+  --max-table-width: calc(42ch + 6em);
+}
