@@ -215,7 +215,7 @@ const tables = [
       {
         key: 'FK',
         references: { tableId: 3, onDelete: 'cascade' },
-        name: 'postId',
+        name: 'postID',
         datatype: DATATYPES_KNEX.integer,
         nullable: null,
         unique: null

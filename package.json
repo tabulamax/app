@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@kazkadien/svelte": "^0.0.18",
+    "autoprefixer": "^10.3.4",
     "idb-keyval": "^6.0.1",
     "prettier": "^2.4.0",
     "prettier-plugin-svelte": "^2.4.0"
