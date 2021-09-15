@@ -15,7 +15,7 @@
     "vite": "^2.5.4"
   },
   "dependencies": {
-    "@kazkadien/svelte": "^0.0.18",
+    "@kazkadien/svelte": "^0.0.21",
     "autoprefixer": "^10.3.4",
     "idb-keyval": "^6.0.1",
     "prettier": "^2.4.0",
