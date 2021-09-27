@@ -5,10 +5,14 @@
 
   import { generateCode } from '../utils/generateCode';
 
+  import '../css/prism.css';
+  import Prism from 'prismjs';
+
   let snack = '';
   let toast = '';
 
   let code = 'code';
+  let prismHTML = '';
   let modalIsOpen = false;
 
   async function onCopyToClipboard() {
@@ -23,8 +27,10 @@
     }
   }
   function handle(tech) {
-    // console.log(tt);
     code = generateCode(tech);
+    // console.log(code);
+    prismHTML = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+    // console.log(prismHTML);
     modalIsOpen = true;
   }
 </script>
@@ -51,8 +57,9 @@
       </header>
 
       <div class="cnt rpx">
-        <pre>
-					{ code }
+        <pre class="language-html">
+					<!-- { code } -->
+          {@html prismHTML}
 				</pre>
       </div>
     </ModalCard>

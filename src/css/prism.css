@@ -1,0 +1,142 @@
+:root {
+	--h-string-attr-name: var(--text);
+	--h-punctuation: var(--text-dim);
+	--h-comment: var(--text-opac);
+
+	--h-function-attr-value: var(--text-danger);
+	--h-atrule: var(--gamma-up);
+	--h-regex-important: var(--danger-up);
+
+	--h-keyword-property: var(--text-alpha);
+	--h-tag: var(--text-beta);
+	--h-namespace: var(--text-gamma);
+
+	--h-select: hsla(0, 0%, 50%, 0.33);
+	--h-bg: var(--bg-darker);
+	--h-bg: transparent;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: var(--h-comment);
+}
+
+.token.punctuation {
+	color: var(--h-punctuation);
+}
+
+.token.variable,
+.token.namespace {
+	color: var(--h-namespace);
+}
+
+.token.tag,
+.token.boolean,
+.token.number,
+.token.selector,
+.token.deleted {
+	color: var(--h-tag);
+}
+
+.token.keyword,
+.token.property,
+.token.constant,
+.token.symbol,
+.token.builtin {
+	color: var(--h-keyword-property);
+}
+
+.token.attr-name,
+.token.string,
+.token.char,
+.token.operator,
+.token.entity,
+.token.url,
+.token.parameter,
+.language-css .token.string,
+.style .token.string,
+.token.inserted {
+	color: var(--h-string-attr-name);
+}
+
+.token.function,
+.token.attr-value {
+	color: var(--h-function-attr-value);
+}
+
+.token.atrule {
+	color: var(--h-atrule);
+}
+
+.token.regex,
+.token.important {
+	color: var(--h-regex-important);
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+/* box */
+code,
+pre[class*='language-'] {
+	color: var(--text);
+	background: var(--h-bg);
+
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	tab-size: 2;
+	hyphens: none;
+	/* vertical-align: middle; */
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+	display: block;
+	overflow: auto;
+	overflow: auto;
+
+	/* border: 1px solid var(--line);
+  border-radius: 0.5em;
+
+  padding: 1.5em; */
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+	text-shadow: none;
+	background: var(--h-select);
+}
+
+pre::-webkit-scrollbar-thumb {
+	border-color: var(--h-bg);
+}
+
+/* Inline code */
+:not(pre) > code {
+	padding: 0.15em 0.2em;
+	white-space: normal;
+	background: var(--bg-darker);
+}
+
+/* pre[data-line] {
+	padding: 1em 0 1em 3em;
+	position: relative;
+} */
