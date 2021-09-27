@@ -98,7 +98,7 @@
 <ModalCard large on:close={() => dispatch('close')} title="{isEdit ? 'Update' : 'Create'} Table">
   <form on:submit|preventDefault={handleSubmit} class="form alpha fdc ">
     <div class="t-name">
-      <Field title="Table Name">
+      <Field label="Table Name">
         <input type="text" bind:value={table.name} id="table-name" />
       </Field>
     </div>
@@ -117,7 +117,7 @@
           <MyIcon name="delete" />
         </Btn>
 
-        <Field title="Key">
+        <Field label="Key">
           <select bind:value={col.key}>
             {#each KEYS as k}
               <option value={k}>{k}</option>
@@ -126,7 +126,7 @@
         </Field>
 
         {#if col.key !== '' && col.references}
-          <Field title="References">
+          <Field label="References">
             <select bind:value={col.references.tableId}>
               {#each projectTables as ct}
                 <option value={ct.id}>{ct.name}</option>
@@ -135,11 +135,11 @@
           </Field>
         {/if}
 
-        <Field title="Column Name">
+        <Field label="Column Name">
           <input type="text" bind:value={col.name} required />
         </Field>
 
-        <Field title="Datatype">
+        <Field label="Datatype">
           <select bind:value={col.datatype} required>
             {#each Object.entries(DATATYPES_KNEX) as [k, val]}
               <option value={val}>{val}</option>
@@ -148,7 +148,7 @@
         </Field>
 
         {#if col.key === ''}
-          <Field title="Nullable">
+          <Field label="Nullable">
             <select bind:value={col.nullable} class:trussy={col.nullable}>
               {#each [true, false] as val}
                 <option value={val}>{val}</option>
@@ -158,7 +158,7 @@
         {/if}
 
         {#if col.key === ''}
-          <Field title="Unique">
+          <Field label="Unique">
             <select bind:value={col.unique} class:trussy={col.unique}>
               {#each [true, false] as val}
                 <option value={val}>{val}</option>
@@ -168,7 +168,7 @@
         {/if}
 
         {#if col.references?.tableId}
-          <Field title="On Delete">
+          <Field label="On Delete">
             <select bind:value={col.references.onDelete} class:trussy={col.unique}>
               {#each Object.entries(ACTIONS) as [k, val]}
                 <option value={k}>{val}</option>

@@ -29,11 +29,11 @@
   <Modal on:close={() => (modalIsOpen = false)}>
     <ModalCard title="CREATE NEW SNAP" on:close={() => (modalIsOpen = false)}>
       <form class="form alpha fdc g1" on:submit|preventDefault={handleSubmit}>
-        <Field title="Title">
+        <Field label="Title">
           <input type="text" bind:value={title} required />
         </Field>
 
-        <Field title="Notes">
+        <Field label="Notes">
           <textarea rows="8" bind:value={notes} required />
         </Field>
 

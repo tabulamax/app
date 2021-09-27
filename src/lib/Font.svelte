@@ -21,7 +21,7 @@
 </svelte:head>
 
 <div class="box">
-  <Field title="Font Size">
+  <Field label="Font Size">
     <select bind:value={$font.size}>
       {#each FONT.sizes as x}
         <option value={x}>{x}</option>
@@ -31,7 +31,7 @@
 </div>
 
 <div class="box">
-  <Field title="Family">
+  <Field label="Family">
     <select bind:value={$font.family}>
       {#each FONT.families as x}
         <option value={x}>{x}</option>

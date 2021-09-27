@@ -66,11 +66,11 @@
   {#if editing}
     <div class="card w-max">
       <form class="form fdc g1  alpha" on:submit|preventDefault>
-        <Field title="Project Title">
+        <Field label="Project Title">
           <input type="text" bind:value={updates.title} />
         </Field>
 
-        <Field title="Project Notes">
+        <Field label="Project Notes">
           <textarea bind:value={updates.notes} rows="10" required />
         </Field>
 

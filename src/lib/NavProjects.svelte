@@ -53,7 +53,7 @@
   onDestroy(() => unsub());
 </script>
 
-<Field title="Project">
+<Field label="Project">
   <select bind:value={$activeProject.id}>
     {#each $ws.projects as project}
       <option value={project.id}>{project.title}</option>
@@ -61,7 +61,7 @@
   </select>
 </Field>
 
-<Field title="Snap">
+<Field label="Snap">
   <select bind:value={$activeProject.snapName}>
     {#each $activeProjectSnapNames as snap}
       <option value={snap} selected={snap == $activeProject.snapName}>
