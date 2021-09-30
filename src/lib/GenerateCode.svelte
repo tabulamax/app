@@ -56,7 +56,7 @@
         </Btn>
       </header>
 
-      <div class="cnt rpx">
+      <div class="rpx">
         <pre class="language-html">
 					<!-- { code } -->
           {@html prismHTML}
@@ -86,15 +86,6 @@
   }
 
   pre {
-    padding: 1rem 1rem 15vh;
-
-    tab-size: 2ch;
-    -moz-tab-size: 2ch;
-    line-height: 1.33;
-  }
-  @media only screen and (min-width: 700px) {
-    pre {
-      padding: 1rem 3rem 15vh;
-    }
+    padding-bottom: 15vh;
   }
 </style>

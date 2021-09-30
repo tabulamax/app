@@ -31,7 +31,15 @@
     border-radius: 1rem;
     border: 1px solid var(--line);
 
-    width: min(100%, 90ch);
+    --w: calc(100vw - 4rem);
+    width: min(var(--w), 120ch);
+    /* background-color: aqua; */
+  }
+
+  @media only screen and (min-width: 740px) {
+    .card {
+      width: min(80vw, 120ch);
+    }
   }
 
   .card.large {
@@ -45,6 +53,6 @@
 
   .card > .body {
     padding: 3rem var(--rsx) 3rem;
-    /* background-color: rgba(228, 243, 230, 0.1); */
+    background-color: rgba(52, 134, 63, 0.5);
   }
 </style>
