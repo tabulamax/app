@@ -53,6 +53,6 @@
 
   .card > .body {
     padding: 3rem var(--rsx) 3rem;
-    background-color: rgba(52, 134, 63, 0.5);
+    /* background-color: rgba(52, 134, 63, 0.5); */
   }
 </style>
