@@ -73,8 +73,7 @@
   let foreignKeysToHighlight;
 
   const onMouseEnter = (key, { refTableId, tableId }) => {
-    // console.log({ key, refTableId, tableId })
-
+    // console.log({ key, refTableId, tableId });
     if (key == 'FK' || refTableId) {
       const selector = '.PK_of_' + refTableId;
       primaryKeysToHighlight = document.querySelectorAll(selector);
@@ -114,8 +113,6 @@
 </script>
 
 <div class="table">
-  <!-- <header class:is-done={table.isDone}>
-    <h3 on:dragstart={() => dispatch('drag-table')} class="draggable" draggable="true"> -->
   <header
     class:is-done={table.isDone}
     on:dragstart={() => dispatch('drag-table')}
@@ -147,9 +144,9 @@
     {#each table.columns as col, i (i)}
       <li
         class="
-            {col.references?.tableId ? `FK_of_${col.references?.tableId}` : ''} 
-            {col.key == 'PK' ? `PK_of_${table.id}` : ''}
-                "
+        {col.references?.tableId ? `FK_of_${col.references?.tableId}` : ''}
+        {col.key == 'PK' ? `PK_of_${table.id}` : ''}
+        "
       >
         <div
           on:mouseenter={() =>
@@ -279,13 +276,14 @@
     background-color: var(--table-col-hover);
   }
 
-  li[class^='FK']:hover > div > span,
-  li.highlight-PK > div > span {
-    background-color: var(--foreign-key-hover);
-  }
-  li[class^='PK']:hover > div > span,
+  li[class*='PK']:hover > div > span,
   li.highlight-FK > div > span {
     background-color: var(--primary-key-hover);
+  }
+
+  li[class*='FK']:hover > div > span,
+  li.highlight-PK > div > span {
+    background-color: var(--foreign-key-hover);
   }
 
   li.highlight-FK > div,
