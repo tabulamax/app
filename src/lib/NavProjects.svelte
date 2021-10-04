@@ -20,7 +20,7 @@
   }
 
   async function switchProject(id) {
-    // console.log({ projectID: id })
+    // console.log({ projectID: id });
     if (!id) {
       console.log('ID: ', id);
       return;

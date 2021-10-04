@@ -11,36 +11,50 @@
 
   let snack = '';
 
-  $: showSnapActions = $activeProject.snapName !== 'current';
+  $: is_current = $activeProject.snapName === 'current';
 
-  let is = { edit: false, confirmDelete: false };
+  let is_edit = false;
+  let is_delete = false;
 
   let updates = {
-    title: $board.title,
-    notes: $board.notes
+    title: 'title',
+    notes: 'notes'
   };
 
-  const onDelete = () => {
-    is.confirmDelete = true;
+  function onDelete() {
+    is_delete = true;
     // console.log('onDelete')
-    setTimeout(() => (is.confirmDelete = false), 1500);
-  };
+    setTimeout(() => (is_delete = false), 1500);
+  }
 
-  const onConfirmDelete = async () => {
+  async function onConfirmDelete() {
     // console.log('onConfirmDelete')
-    is.edit = false;
-    is.confirmDelete = false;
+    is_edit = false;
+    is_delete = false;
 
     await deleteProject();
 
     snack = 'Deleted !';
-  };
+  }
 
-  const onEditingDone = async () => {
+  function onEdit() {
+    if (is_current) {
+      is_edit = true;
+
+      updates = {
+        title: $board.title,
+        notes: $board.notes
+      };
+    } else {
+      console.warn('not allowed to edit');
+    }
+  }
+
+  async function onEditingDone() {
     const proj = $ws.projects.find((p) => p.id === $activeProject.id);
     // console.log({ proj })
     proj.title = updates.title;
-    is.edit = false;
+    is_edit = false;
 
     if (updates.title !== $board.title) {
       // console.log('upd title')
@@ -50,12 +64,11 @@
     }
 
     if (updates.notes !== $board.notes) {
-      // console.log('upd notes')
-      db.snap.update($activeProject.id, $activeProject.snapName, { notes: $board.notes });
+      // console.log('upd notes');
+      await db.snap.update($activeProject.id, $activeProject.snapName, { notes: updates.notes });
+      board.update((n) => ({ ...n, notes: updates.notes }));
     }
-  };
-
-  $: editing = is.edit && $activeProject.snapName == 'current';
+  }
 </script>
 
 {#if snack}
@@ -63,9 +76,9 @@
 {/if}
 
 <section id="project-card">
-  {#if editing}
+  {#if is_edit}
     <div class="card w-max">
-      <form class="form fdc g1  alpha" on:submit|preventDefault>
+      <form class="form fdc g1 alpha" on:submit|preventDefault>
         <Field label="Project Title">
           <input type="text" bind:value={updates.title} />
         </Field>
@@ -79,7 +92,7 @@
             <MyIcon name="done_all" />
             <span>done</span>
           </Btn>
-          {#if !is.confirmDelete}
+          {#if !is_delete}
             <Btn on:click={onDelete} classic accent="danger">
               <MyIcon name="delete" />
               <span>delete project</span>
@@ -102,8 +115,8 @@
           <h4>👉 {$activeProject.snapName}</h4>
         </header>
 
-        {#if $activeProject.snapName == 'current'}
-          <Btn on:click={() => (is.edit = true)} icony accent="alpha">
+        {#if is_current}
+          <Btn on:click={onEdit} icony accent="alpha">
             <MyIcon name="edit" />
           </Btn>
         {/if}
@@ -113,7 +126,7 @@
     </div>
   {/if}
 
-  {#if showSnapActions}
+  {#if !is_current}
     <div class="w-max"><SnapActions /></div>
   {/if}
 </section>
