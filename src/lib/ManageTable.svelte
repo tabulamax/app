@@ -31,7 +31,7 @@
   const handleSubmit = async () => {
     // console.log({ table });
     table.columns.forEach((col) => {
-      if (col.key !== '') {
+      if (col.key === 'PK') {
         col.nullable = null;
         col.unique = null;
       }
@@ -111,7 +111,9 @@
             table = table;
           }}
           icony
-          classic
+          pointy
+          colored
+          outlined
           accent="danger"
         >
           <MyIcon name="delete" />
@@ -125,29 +127,33 @@
           </select>
         </Field>
 
-        {#if col.key !== '' && col.references}
-          <Field label="References">
-            <select bind:value={col.references.tableId}>
+        <Field label="References">
+          {#if col.key !== '' && col.references}
+            <select bind:value={col.references.tableId} class="ct references">
               {#each projectTables as ct}
                 <option value={ct.id}>{ct.name}</option>
               {/each}
             </select>
-          </Field>
-        {/if}
+          {:else}
+            <select disabled class="references">
+              <option value="" />
+            </select>
+          {/if}
+        </Field>
 
         <Field label="Column Name">
           <input type="text" bind:value={col.name} required />
         </Field>
 
-        <Field label="Datatype">
-          <select bind:value={col.datatype} required>
+        <Field label="Datatype" accent="beta">
+          <select bind:value={col.datatype} class="ct" required>
             {#each Object.entries(DATATYPES_KNEX) as [k, val]}
-              <option value={val}>{val}</option>
+              <option value={k}>{val}</option>
             {/each}
           </select>
         </Field>
 
-        {#if col.key === ''}
+        {#if col.key !== 'PK'}
           <Field label="Nullable">
             <select bind:value={col.nullable} class:trussy={col.nullable}>
               {#each [true, false] as val}
@@ -178,7 +184,7 @@
         {/if}
 
         <div class="btn-add">
-          <Btn on:click={() => onAddColumn(i + 1)} icony classic accent="gamma">
+          <Btn on:click={() => onAddColumn(i + 1)} icony pointy outlined colored accent="gamma">
             <MyIcon name="add" />
           </Btn>
         </div>
@@ -195,8 +201,8 @@
   .btn-add {
     /* background-color: #fff; */
     margin-left: auto;
-    border-left: 1px solid var(--line);
-    padding-left: 1rem;
+    /* border-left: 1px solid var(--line); */
+    /* padding-left: 1rem; */
   }
 
   .t-name {
@@ -210,7 +216,7 @@
     display: flex;
     align-items: flex-end;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1ch;
     padding: 0.25rem 1rem 1rem;
     border-radius: 1rem;
 
@@ -226,6 +232,10 @@
 
   select.trussy {
     background-color: hsla(var(--alpha-hsl), 0.25);
+  }
+
+  .references {
+    width: 12ch;
   }
 
   .sub {

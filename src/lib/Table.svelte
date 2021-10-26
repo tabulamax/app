@@ -4,7 +4,7 @@
 
   import { createEventDispatcher } from 'svelte';
 
-  import { KEYS_EMOJI } from '../data/constants';
+  import { KEYS_EMOJI, DATATYPES_KNEX } from '../data/constants';
 
   const dispatch = createEventDispatcher();
 
@@ -181,7 +181,7 @@
             {/if}
           </span>
 
-          <span class="datatype">{col.datatype}</span>
+          <span class="datatype">{DATATYPES_KNEX[col.datatype]}</span>
         </div>
       </li>
     {/each}

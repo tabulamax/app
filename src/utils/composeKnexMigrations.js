@@ -4,7 +4,7 @@ import { DATATYPES_KNEX, ACTIONS } from '../data/constants';
 export function composeKnexMigrations(tables) {
   const IDENTITY = "\n\nconst IDENTITY = 'INT GENERATED ALWAYS AS IDENTITY'";
 
-  const paramKnex = "\n\n/** @param {import('knex')} knex */";
+  const paramKnex = "\n\n/** @param {import('knex').Knex} knex */";
 
   let identity = '';
   let refs = '';
@@ -58,14 +58,12 @@ export function composeKnexMigrations(tables) {
         // console.log(toRaw(refTablePKCols[0]))
         const refColName = refTablePKCols.length === 1 ? refTablePKCols[0].name : '/* column */';
 
-        entries += `\n\t\t .references(${refTable.name}.${refColName})`;
-        entries += `\n\t\t .inTable(tn.${refTable.name})`;
+        entries += `.references(${refTable.name}.${refColName})`;
+        entries += `.inTable(tn.${refTable.name})`;
 
         if (col.references.onDelete !== 'noAction') {
-          entries += `\n\t\t .onDelete('${ACTIONS[col.references.onDelete]}')`;
+          entries += `.onDelete('${ACTIONS[col.references.onDelete]}')`;
         }
-
-        entries += `\n\t\t .notNullable()\n`;
       }
     });
 
@@ -78,7 +76,7 @@ export function composeKnexMigrations(tables) {
 
   const knexDown = `${paramKnex}\nexport async function down(knex) {${down}\n}`;
 
-  const importRefs = `/* TODO: fix import */\nimport { \n  tn,${refs}\n} from '@/tableReferences.js'`;
+  const importRefs = `/* TODO: fix import */\nimport { \n  tn,${refs}\n} from '#data/tableReferences.js'`;
 
   const code = importRefs + identity + knexUp + knexDown;
   // console.log(text)
