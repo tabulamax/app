@@ -1,6 +1,7 @@
 import { composeRefObjects } from './composeJSRefs';
 import { composeKnexMigrations } from './composeKnexMigrations';
 import { composeCreateAndDropTablesSQL } from './composeCreateAndDropSQL';
+import { composeDTypes } from './composeDTypes';
 
 import { board } from '../store/projects';
 import { get } from 'svelte/store';
@@ -19,6 +20,10 @@ export const generateCode = (ctx) => {
 
     case 'js:knex':
       code = composeKnexMigrations(tables);
+      break;
+
+    case 'd.ts':
+      code = composeDTypes(tables);
       break;
 
     case 'sql':

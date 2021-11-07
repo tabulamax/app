@@ -7,8 +7,9 @@
   import { KEYS_EMOJI, DATATYPES_KNEX } from '../data/constants';
 
   const dispatch = createEventDispatcher();
+  /** @type {import("../typings/types").Table}*/
+  export let table;
 
-  export let table = {};
   export let editable = false;
   // console.log(_)
   let confirm = false;

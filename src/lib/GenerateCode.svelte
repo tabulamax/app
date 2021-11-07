@@ -35,7 +35,7 @@
   }
 </script>
 
-{#each ['js:refs', 'js:knex', 'sql'] as tech}
+{#each ['js:refs', 'js:knex', 'd.ts', 'sql'] as tech}
   <Btn outlined on:click={() => handle(tech)}>
     <MyIcon name="code" />
     <span>{tech}</span>
