@@ -10,6 +10,7 @@
 
   let boxIdx = null;
 
+  /** @type {import("../typings/types").Table[]}*/
   let computedTables;
 
   $: {
