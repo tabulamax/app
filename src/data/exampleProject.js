@@ -112,7 +112,7 @@ const tables = [
     isDone: false,
     columns: [
       {
-        key: 'FK',
+        key: 'PK',
         references: { tableId: 1637744240467, onDelete: 'cascade' },
         name: 'repliesTo',
         datatype: DT.integer,
@@ -120,7 +120,7 @@ const tables = [
         unique: false
       },
       {
-        key: 'FK',
+        key: 'PK',
         references: { tableId: 1637744240467, onDelete: 'cascade' },
         name: 'reply',
         datatype: DT.integer,
@@ -199,7 +199,7 @@ const tables = [
     isDone: false,
     columns: [
       {
-        key: 'FK',
+        key: 'PK',
         references: { tableId: 1637743830488, onDelete: 'cascade' },
         name: 'postId',
         datatype: DT.integer,
@@ -207,7 +207,7 @@ const tables = [
         unique: false
       },
       {
-        key: 'FK',
+        key: 'PK',
         references: { tableId: 1637744240467, onDelete: 'cascade' },
         name: 'commentId',
         datatype: DT.integer,
