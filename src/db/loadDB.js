@@ -1,5 +1,5 @@
 import db from './db';
-import { starter } from '../data/constants';
+import { starter } from '../data/exampleProject';
 
 /** @type { import("../typings/types").Workspace } */
 let ws;
