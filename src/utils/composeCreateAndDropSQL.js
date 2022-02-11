@@ -1,7 +1,12 @@
-import { ACTIONS, DATATYPES_KNEX, DATATYPES_POSTGRES } from '../data/constants';
+import { ACTIONS, DATATYPES_KNEX, DATATYPES_POSTGRES, DATATYPES_SQLITE } from '../data/constants';
 
-/** @param tables { import("../typings/types").Table[] } */
-export function composeCreateAndDropTablesSQL(tables) {
+/**
+ * @param {import("../typings/types").Table[]} tables
+ * @param {string} dialect
+ */
+export function composeCreateAndDropTablesSQL(tables, dialect) {
+  const DB = dialect === 'sqlite' ? DATATYPES_SQLITE : DATATYPES_POSTGRES;
+
   const CT = '\n\nCREATE TABLE';
   const DT = '\n\nDROP TABLE IF EXISTS';
   const IDENTITY = 'INT GENERATED ALWAYS AS IDENTITY';
@@ -26,20 +31,21 @@ export function composeCreateAndDropTablesSQL(tables) {
           entry += `\n  ${col.name} ${IDENTITY}`;
           break;
 
-        case DATATYPES_KNEX.enum:
-          entry += `\n  ${col.name} /* enum */`;
-          break;
+        // case DATATYPES_KNEX.enum:
+        //   entry += `\n  ${col.name} /* enum */`;
+        //   break;
 
-        case DATATYPES_KNEX.specific:
-          entry += `\n  ${col.name} /* specific type */`;
-          break;
+        // case DATATYPES_KNEX.specific:
+        //   entry += `\n  ${col.name} /* specific type */`;
+        //   break;
 
-        case DATATYPES_KNEX.increments:
-          entry += `\n  ${col.name} SERIAL`;
-          break;
+        // case DATATYPES_KNEX.increments:
+        //   entry += `\n  ${col.name} SERIAL`;
+        //   break;
 
         default:
-          entry += `\n  ${col.name} ${DATATYPES_POSTGRES[col.datatype]}`;
+          entry += `\n  ${col.name} ${DB[col.datatype]}`;
+          // entry += `\n  ${col.name} ${DATATYPES_POSTGRES[col.datatype]}`;
           break;
       }
 
@@ -76,7 +82,7 @@ export function composeCreateAndDropTablesSQL(tables) {
     create += entries + primaries + foreigns + '\n);';
   });
 
-  const code = '/* PostgreSQL */\n\n/* CREATE */' + create + '\n\n\n/* DROP */' + drop;
+  const code = `\n/* ${dialect} */\n\n/* CREATE */` + create + '\n\n\n/* DROP */' + drop;
 
   return code;
 }

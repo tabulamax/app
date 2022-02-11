@@ -76,7 +76,7 @@ export function composeKnexMigrations(tables) {
 
   const knexDown = `${paramKnex}\nexport async function down(knex) {${down}\n}`;
 
-  const importRefs = `/* TODO: fix import */\nimport { \n  tn,${refs}\n} from '#data/tableReferences.js'`;
+  const importRefs = `\n/* TODO: fix import */\nimport { \n  tn,${refs}\n} from '#data/tableReferences.js'`;
 
   const code = importRefs + identity + knexUp + knexDown;
   // console.log(text)

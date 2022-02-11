@@ -58,7 +58,7 @@ export function composeRefObjects(tables) {
     refs += columns + _columns;
   });
 
-  const fileName = '/* tableReferences.js | dbReferences.js */';
+  const fileName = '\n/* tableReferences.js | dbReferences.js */';
 
   const tableNames = `\n\n/** @enum {string} Table names */\nconst tn = {${tn}\n}`;
 

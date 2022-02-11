@@ -1,10 +1,13 @@
+import { DATATYPES_2_DTS } from '../data/constants';
+
+/** @param {string} string */
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 /** @param tables { import("../typings/types").Table[] } */
 export function composeDTypes(tables) {
-  const EI = '\n\nexport interface';
+  const EI = '\nexport interface';
 
   let create = '';
 
@@ -19,21 +22,8 @@ export function composeDTypes(tables) {
     create += `${EI} ${tn} {`;
 
     table.columns.forEach((col) => {
-      const nums = ['bigInteger', 'identity', 'increments', 'integer', 'float'];
-      const strs = ['string', 'text', 'uuid', 'date', 'timestamp', 'enum'];
-
       const key = `${col.name}${col.nullable ? '?' : ''}`;
-      let type;
-
-      if (nums.includes(col.datatype)) {
-        type = 'number';
-      } else if (strs.includes(col.datatype)) {
-        type = 'string';
-      } else if (col.datatype == 'boolean') {
-        type = 'boolean';
-      } else {
-        type = 'any';
-      }
+      const type = DATATYPES_2_DTS[col.datatype];
 
       entries += `\n  ${key}: ${type};`;
     });

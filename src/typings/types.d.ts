@@ -61,3 +61,5 @@ export type MyIcon =
   | 'remove_done'
   | 'delete_forever'
   | 'key';
+
+export type Tech = 'js: knex' | 'js: references' | 'js: d.ts' | 'sql: postgres' | 'sql: sqlite3';

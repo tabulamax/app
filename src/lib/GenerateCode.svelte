@@ -1,5 +1,5 @@
 <script>
-  import { Btn, Modal, Toast, Snackbar } from '@kazkadien/svelte';
+  import { Btn, Modal, Toast, Snackbar, DropdownMenuList, Dropdown } from '@kazkadien/svelte';
   import MyIcon from './MyIcon.svelte';
   import ModalCard from './ModalCard.svelte';
 
@@ -7,6 +7,8 @@
 
   import '../css/prism.css';
   import Prism from 'prismjs';
+
+  /** @typedef {import("../typings/types").Tech} Tech*/
 
   let snack = '';
   let toast = '';
@@ -26,6 +28,8 @@
       toast = 'Something went wrong :( !';
     }
   }
+
+  /** @param {Tech} tech */
   function handle(tech) {
     code = generateCode(tech);
     // console.log(code);
@@ -33,14 +37,31 @@
     // console.log(prismHTML);
     modalIsOpen = true;
   }
+
+  /** @type {Tech[]}*/
+  const _tech = ['js: knex', 'js: references', 'js: d.ts', 'sql: postgres', 'sql: sqlite3'];
 </script>
 
-{#each ['js:refs', 'js:knex', 'd.ts', 'sql'] as tech}
-  <Btn outlined on:click={() => handle(tech)}>
-    <MyIcon name="code" />
-    <span>{tech}</span>
-  </Btn>
-{/each}
+<div class="">
+  <Dropdown withArrows top hoverable grow outlined colored>
+    <svelte:fragment slot="title">
+      <MyIcon name="code" />
+      <span>Code</span>
+    </svelte:fragment>
+
+    <DropdownMenuList accent="">
+      {#each _tech as tech}
+        <button class="menu-list-item" on:click={() => handle(tech)}>{tech}</button>
+      {/each}
+    </DropdownMenuList>
+  </Dropdown>
+</div>
+<!-- {#each _tech as tech} -->
+<!--   <Btn outlined on:click={() => handle(tech)}> -->
+<!--     <MyIcon name="code" /> -->
+<!--     <span>{tech}</span> -->
+<!--   </Btn> -->
+<!-- {/each} -->
 
 {#if snack}
   <Snackbar on:close={() => (snack = '')} accent="alpha" body={snack} iconName="check_circle" />
@@ -87,5 +108,12 @@
 
   pre {
     padding-bottom: 15vh;
+  }
+  .menu-list-item {
+    text-transform: uppercase;
+  }
+
+  .menu-list-item ~ .menu-list-item {
+    border-top: 1px solid var(--line);
   }
 </style>
