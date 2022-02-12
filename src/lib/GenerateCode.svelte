@@ -7,6 +7,8 @@
 
   import '../css/prism.css';
   import Prism from 'prismjs';
+  import 'prismjs/components/prism-typescript';
+  import 'prismjs/components/prism-sql';
 
   /** @typedef {import("../typings/types").Tech} Tech*/
 
@@ -33,7 +35,13 @@
   function handle(tech) {
     code = generateCode(tech);
     // console.log(code);
-    prismHTML = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+    if (tech.startsWith('sql:')) {
+      prismHTML = Prism.highlight(code, Prism.languages.sql, 'sql');
+    } else if (tech == 'js: d.ts') {
+      prismHTML = Prism.highlight(code, Prism.languages.typescript, 'typescript');
+    } else {
+      prismHTML = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+    }
     // console.log(prismHTML);
     modalIsOpen = true;
   }
