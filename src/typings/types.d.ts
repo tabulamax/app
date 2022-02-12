@@ -63,3 +63,30 @@ export type MyIcon =
   | 'key';
 
 export type Tech = 'js: knex' | 'js: references' | 'js: d.ts' | 'sql: postgres' | 'sql: sqlite3';
+
+export interface Datatypes {
+  bigInteger: string;
+  binary: string;
+  boolean: string;
+  date: string;
+  datetime: string;
+  decimal: string;
+  double: string;
+  enum: string;
+  float: string;
+  geography: string;
+  geometry: string;
+  identity: string;
+  increments: string;
+  integer: string;
+  json: string;
+  jsonb: string;
+  point: string;
+  smallint: string;
+  specific: string;
+  string: string;
+  text: string;
+  time: string;
+  timestamp: string;
+  uuid: string;
+}

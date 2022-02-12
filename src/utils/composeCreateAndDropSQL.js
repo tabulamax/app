@@ -1,4 +1,4 @@
-import { ACTIONS, DATATYPES_KNEX, DATATYPES_POSTGRES, DATATYPES_SQLITE } from '../data/constants';
+import { ACTIONS, DATATYPES_POSTGRES, DATATYPES_SQLITE } from '../data/constants';
 
 /**
  * @param {import("../typings/types").Table[]} tables
@@ -9,7 +9,6 @@ export function composeCreateAndDropTablesSQL(tables, dialect) {
 
   const CT = '\n\nCREATE TABLE';
   const DT = '\n\nDROP TABLE IF EXISTS';
-  const IDENTITY = 'INT GENERATED ALWAYS AS IDENTITY';
 
   let create = '';
   let drop = '';
@@ -26,27 +25,7 @@ export function composeCreateAndDropTablesSQL(tables, dialect) {
     table.columns.forEach((col) => {
       let entry = '';
 
-      switch (col.datatype) {
-        case DATATYPES_KNEX.identity:
-          entry += `\n  ${col.name} ${IDENTITY}`;
-          break;
-
-        // case DATATYPES_KNEX.enum:
-        //   entry += `\n  ${col.name} /* enum */`;
-        //   break;
-
-        // case DATATYPES_KNEX.specific:
-        //   entry += `\n  ${col.name} /* specific type */`;
-        //   break;
-
-        // case DATATYPES_KNEX.increments:
-        //   entry += `\n  ${col.name} SERIAL`;
-        //   break;
-
-        default:
-          entry += `\n  ${col.name} ${DB[col.datatype]}`;
-          break;
-      }
+      entry += `\n  ${col.name} ${DB[col.datatype]}`;
 
       if (col.key === 'PK') {
         primaryKeys.push(col.name);

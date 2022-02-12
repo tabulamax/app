@@ -1,6 +1,9 @@
 // .mediumint() & .tinyint() - desable for now
 // .timestamps() - not implemented
+//
+/** @typedef {import("../typings/types").Datatypes} Datatypes*/
 
+/** @type {Datatypes} */
 const DATATYPES_KNEX = {
   bigInteger: 'bigInteger',
   binary: 'binary',
@@ -26,12 +29,13 @@ const DATATYPES_KNEX = {
   time: 'time',
   timestamp: 'timestamp',
   uuid: 'uuid'
-
   // mediumint: 'mediumint',
   // tinyint: 'tinyint',
 };
+// console.log(JSON.stringify(DATATYPES_KNEX));
 Object.freeze(DATATYPES_KNEX);
 
+/** @type {Datatypes} */
 const DATATYPES_POSTGRES = {
   bigInteger: 'BIGINT',
   binary: 'BYTEA',
@@ -44,7 +48,7 @@ const DATATYPES_POSTGRES = {
   float: 'REAL',
   geography: 'GEOGRAPHY',
   geometry: 'GEOMETRY',
-  // identity: 'identity',
+  identity: 'INT GENERATED ALWAYS AS IDENTITY',
   increments: 'SERIAL',
   integer: 'INT',
   json: 'JSON',
@@ -57,12 +61,12 @@ const DATATYPES_POSTGRES = {
   time: 'TIME',
   timestamp: 'TIMESTAMPTZ',
   uuid: 'UUID'
-
   // mediumint: 'INT',
   // tinyint: 'SMALLINT',
 };
 Object.freeze(DATATYPES_POSTGRES);
 
+/** @type {Datatypes} */
 const DATATYPES_SQLITE = {
   bigInteger: 'BIGINT',
   binary: 'BLOB',
@@ -75,10 +79,8 @@ const DATATYPES_SQLITE = {
   float: 'FLOAT',
   geography: 'GEOGRAPHY',
   geometry: 'GEOMETRY',
-
-  // identity: 'int', // ??
-  increments: 'integer autoincrement',
-
+  identity: 'integer autoincrement not null', // ??
+  increments: 'integer autoincrement not null', // ??
   integer: 'INT',
   json: 'JSON',
   jsonb: 'JSON',
@@ -95,6 +97,7 @@ const DATATYPES_SQLITE = {
 };
 Object.freeze(DATATYPES_SQLITE);
 
+/** @type {Datatypes} */
 const DATATYPES_2_DTS = {
   bigInteger: 'number',
   binary: 'any', // sqlite: BLOB | pg: BYTEA
@@ -112,21 +115,16 @@ const DATATYPES_2_DTS = {
   integer: 'number',
   json: 'string',
   jsonb: 'any',
-  mediumint: 'number',
   point: 'any',
   specific: 'any',
+  smallint: 'number',
   string: 'string',
   text: 'string',
   time: 'string',
   timestamp: 'string',
   uuid: 'string'
-
-  // smallint: 'number',
+  // mediumint: 'number',
   // tinyint: 'number',
-
-  // for timestamps
-  // created_at: 'string',
-  // updated_at: 'string'
 };
 Object.freeze(DATATYPES_2_DTS);
 
@@ -140,13 +138,6 @@ const ACTIONS = {
 Object.freeze(ACTIONS);
 
 export { DATATYPES_POSTGRES, DATATYPES_KNEX, DATATYPES_SQLITE, DATATYPES_2_DTS, ACTIONS };
-// export const actions = {
-//   noAction: 'noAction',
-//   cascade: 'cascade',
-//   restrict: 'restrict',
-//   setNull: 'setNull',
-//   setDefault: 'setDefault'
-// };
 
 export const FONT = {
   sizes: [10, 12, 14, 16, 18, 20, 24, 28],
@@ -154,6 +145,7 @@ export const FONT = {
 };
 
 export const KEYS = ['', 'PK', 'FK'];
+
 export const KEYS_EMOJI = new Map([
   ['PK', '🔒'],
   ['FK', '🔑'],
