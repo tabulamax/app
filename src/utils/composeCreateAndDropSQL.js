@@ -45,7 +45,6 @@ export function composeCreateAndDropTablesSQL(tables, dialect) {
 
         default:
           entry += `\n  ${col.name} ${DB[col.datatype]}`;
-          // entry += `\n  ${col.name} ${DATATYPES_POSTGRES[col.datatype]}`;
           break;
       }
 
@@ -79,7 +78,10 @@ export function composeCreateAndDropTablesSQL(tables, dialect) {
 
     const primaries = `\n  PRIMARY KEY (${primaryKeys.join(',')}),`;
 
-    create += entries + primaries + foreigns + '\n);';
+    create += entries + primaries + foreigns;
+    create = create.slice(0, -1); // remove last comma ","
+    // console.log(create);
+    create += '\n);';
   });
 
   const code = `\n/* ${dialect} */\n\n/* CREATE */` + create + '\n\n\n/* DROP */' + drop;

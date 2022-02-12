@@ -11,6 +11,7 @@
   let modalIsOpen = false;
   let toast = '';
 
+  /** @param {string} params */
   async function onDownload(params) {
     // console.log(params);
     let projects;
@@ -25,7 +26,7 @@
         $activeProjectSnapNames.map((name) => db.snap.get($activeProject.id, name))
       );
     } else {
-      console.error('👹');
+      console.error('wrong params');
       return;
     }
 
@@ -123,7 +124,7 @@
 </Btn>
 
 {#if modalIsOpen}
-  <Modal on:close={() => (modalIsOpen = false)}>
+  <Modal blurBG on:close={() => (modalIsOpen = false)}>
     <ModalCard title="Download / Upload" on:close={() => (modalIsOpen = false)}>
       <div class="fdc btns">
         <Btn classic on:click={() => onDownload('all')}>

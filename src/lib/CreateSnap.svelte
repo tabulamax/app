@@ -26,7 +26,7 @@
 </Btn>
 
 {#if modalIsOpen}
-  <Modal on:close={() => (modalIsOpen = false)}>
+  <Modal blurBG on:close={() => (modalIsOpen = false)}>
     <ModalCard title="CREATE NEW SNAP" on:close={() => (modalIsOpen = false)}>
       <form class="form alpha fdc g1" on:submit|preventDefault={handleSubmit}>
         <Field label="Title">
