@@ -15,8 +15,9 @@
   }
 </script>
 
-<Btn on:click={onSavePos} accent="alpha" classic>
-  <MyIcon name="grid_view" /><span>save placing</span>
+<Btn on:click={onSavePos} accent="alpha" filled>
+  <MyIcon name="grid_view" />
+  <b>save placing</b>
 </Btn>
 
 {#if snack}

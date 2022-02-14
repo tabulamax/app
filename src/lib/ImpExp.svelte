@@ -118,27 +118,20 @@
   />
 {/if}
 
-<Btn outlined on:click={() => (modalIsOpen = true)}>
-  <!-- <span>Up/Download</span> -->
-  <span>Transfer</span>
-</Btn>
+<Btn text="Transfer" outlined on:click={() => (modalIsOpen = true)} />
 
 {#if modalIsOpen}
   <Modal blurBG on:close={() => (modalIsOpen = false)}>
     <ModalCard title="Download / Upload" on:close={() => (modalIsOpen = false)}>
       <div class="fdc btns">
-        <Btn classic on:click={() => onDownload('all')}>
-          <span>download all projects</span>
-        </Btn>
+        <Btn filled text="download all projects" on:click={() => onDownload('all')} />
 
-        <Btn classic on:click={() => onDownload('current')}>
-          <span>download current project</span>
-        </Btn>
+        <Btn filled text="download current project" on:click={() => onDownload('current')} />
 
         <div class="fdc">
           <input id="downloadFile" type="file" accept="application/json" on:change={onImport} />
-          <label for="downloadFile" id="lab" class="btn classic beta">
-            <span>upload projects</span>
+          <label for="downloadFile" id="lab" class="btn filled beta">
+            <b>upload projects</b>
           </label>
         </div>
       </div>

@@ -110,8 +110,8 @@
             table.columns.splice(i, 1);
             table = table;
           }}
-          icony
-          pointy
+          iconOnly
+          rounded
           colored
           outlined
           accent="danger"
@@ -184,7 +184,7 @@
         {/if}
 
         <div class="btn-add">
-          <Btn on:click={() => onAddColumn(i + 1)} icony pointy outlined colored accent="gamma">
+          <Btn on:click={() => onAddColumn(i + 1)} iconOnly rounded outlined colored accent="gamma">
             <MyIcon name="add" />
           </Btn>
         </div>
@@ -192,7 +192,7 @@
     {/each}
 
     <div class="fce sub">
-      <Btn type="submit" classic>{isEdit ? 'Update' : 'Create'}</Btn>
+      <Btn type="submit" filled text={isEdit ? 'Update' : 'Create'} />
     </div>
   </form>
 </ModalCard>

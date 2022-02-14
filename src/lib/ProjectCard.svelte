@@ -88,19 +88,19 @@
         </Field>
 
         <div class="btns fsb g1">
-          <Btn on:click={onEditingDone} classic>
+          <Btn on:click={onEditingDone} filled>
             <MyIcon name="done_all" />
-            <span>done</span>
+            <b>done</b>
           </Btn>
           {#if !is_delete}
-            <Btn on:click={onDelete} classic accent="danger">
+            <Btn on:click={onDelete} filled accent="danger">
               <MyIcon name="delete" />
-              <span>delete project</span>
+              <b>delete project</b>
             </Btn>
           {:else}
-            <Btn on:click={onConfirmDelete} classic accent="danger">
+            <Btn on:click={onConfirmDelete} filled accent="danger">
               <MyIcon name="delete_forever" />
-              <span>click to confirm delete</span>
+              <b>click to confirm delete</b>
             </Btn>
           {/if}
         </div>
@@ -116,7 +116,7 @@
         </header>
 
         {#if is_current}
-          <Btn on:click={onEdit} icony accent="alpha">
+          <Btn on:click={onEdit} iconOnly accent="alpha">
             <MyIcon name="edit" />
           </Btn>
         {/if}

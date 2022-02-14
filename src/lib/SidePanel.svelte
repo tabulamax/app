@@ -27,15 +27,15 @@
   </div>
 
   <div class="fse g1">
-    <Dropdown outlined icony top hoverable>
-      <Icon name="brightness_low" slot="title" />
+    <Dropdown outlined iconOnly top hoverable>
+      <Icon name="brightness_low" slot="dropbtn" />
       <ThemeSelect heading="THEME" />
     </Dropdown>
 
     <Btn
-      icony
+      iconOnly
       accent="alpha"
-      classic={$showOnlyKeys}
+      filled={$showOnlyKeys}
       outlined={!$showOnlyKeys}
       on:click={() => ($showOnlyKeys = !$showOnlyKeys)}
     >

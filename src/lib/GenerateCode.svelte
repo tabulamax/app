@@ -52,9 +52,9 @@
 
 <div class="">
   <Dropdown withArrows top hoverable grow outlined colored>
-    <svelte:fragment slot="title">
+    <svelte:fragment slot="dropbtn">
       <MyIcon name="code" />
-      <span>Code</span>
+      <b>Code</b>
     </svelte:fragment>
 
     <DropdownMenuList accent="">

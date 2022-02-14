@@ -21,9 +21,7 @@
   }
 </script>
 
-<Btn outlined on:click={() => (modalIsOpen = true)}>
-  <span>new PROJECT</span>
-</Btn>
+<Btn text="NEW PROJECT" outlined on:click={() => (modalIsOpen = true)} />
 
 {#if modalIsOpen}
   <Modal blurBG on:close={() => (modalIsOpen = false)}>
@@ -38,9 +36,7 @@
         </Field>
 
         <div class="fce">
-          <Btn classic type="submit" accent="alpha">
-            <span>Create</span>
-          </Btn>
+          <Btn filled text="Create" type="submit" accent="alpha" />
         </div>
       </form>
     </ModalCard>

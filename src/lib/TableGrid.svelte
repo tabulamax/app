@@ -120,7 +120,7 @@
         >
           <Btn
             on:click={() => (boxIdx = i)}
-            icony
+            iconOnly
             accent="alpha"
             colored
             disabled={$activeProject.snapName !== 'current'}
@@ -133,7 +133,7 @@
               $board.tables.splice(i, 0, null);
               $board.tables = $board.tables;
             }}
-            icony
+            iconOnly
             accent="beta"
             colored
           >
@@ -145,7 +145,7 @@
               $board.tables.splice(i, 1);
               $board.tables = $board.tables;
             }}
-            icony
+            iconOnly
             accent="danger"
             colored
           >
@@ -158,7 +158,12 @@
 
   <div>
     <div class="dropzone fce">
-      <Btn on:click={() => ($board.tables = [...$board.tables, null])} icony accent="beta" colored>
+      <Btn
+        on:click={() => ($board.tables = [...$board.tables, null])}
+        iconOnly
+        accent="beta"
+        colored
+      >
         <Icon name="add" />
       </Btn>
     </div>
