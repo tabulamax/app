@@ -122,16 +122,36 @@
   >
     <h3>{table.name}</h3>
 
-    <Btn on:click={() => dispatch('edit')} colored iconOnly accent="alpha" disabled={!editable}>
+    <Btn
+      on:click={() => dispatch('edit')}
+      tooltip="edit table"
+      colored
+      iconOnly
+      accent="alpha"
+      disabled={!editable}
+    >
       <MyIcon name="edit" />
     </Btn>
 
-    <Btn on:click={() => (table.isDone = !table.isDone)} colored iconOnly accent="beta">
+    <Btn
+      on:click={() => (table.isDone = !table.isDone)}
+      tooltip="done"
+      colored
+      iconOnly
+      accent="beta"
+    >
       <MyIcon name={table.isDone ? 'done_all' : 'remove_done'} />
     </Btn>
 
     {#if !confirm}
-      <Btn on:click={onDelete} iconOnly disabled={!editable} colored accent="danger">
+      <Btn
+        on:click={onDelete}
+        tooltip="double click to delete"
+        iconOnly
+        disabled={!editable}
+        colored
+        accent="danger"
+      >
         <MyIcon name="delete" />
       </Btn>
     {:else}

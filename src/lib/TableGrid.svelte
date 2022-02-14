@@ -120,6 +120,7 @@
         >
           <Btn
             on:click={() => (boxIdx = i)}
+            tooltip="add table"
             iconOnly
             accent="alpha"
             colored
@@ -133,6 +134,7 @@
               $board.tables.splice(i, 0, null);
               $board.tables = $board.tables;
             }}
+            tooltip="add cell"
             iconOnly
             accent="beta"
             colored
@@ -145,6 +147,7 @@
               $board.tables.splice(i, 1);
               $board.tables = $board.tables;
             }}
+            tooltip="remove cell"
             iconOnly
             accent="danger"
             colored
@@ -160,6 +163,7 @@
     <div class="dropzone fce">
       <Btn
         on:click={() => ($board.tables = [...$board.tables, null])}
+        tooltip="add cell"
         iconOnly
         accent="beta"
         colored

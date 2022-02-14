@@ -38,6 +38,7 @@
       filled={$showOnlyKeys}
       outlined={!$showOnlyKeys}
       on:click={() => ($showOnlyKeys = !$showOnlyKeys)}
+      tooltip="show only primary & foreign keys"
     >
       <MyIcon name="key" />
     </Btn>

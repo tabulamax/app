@@ -121,7 +121,7 @@
 <Btn text="Transfer" outlined on:click={() => (modalIsOpen = true)} />
 
 {#if modalIsOpen}
-  <Modal blurBG on:close={() => (modalIsOpen = false)}>
+  <Modal on:close={() => (modalIsOpen = false)}>
     <ModalCard title="Download / Upload" on:close={() => (modalIsOpen = false)}>
       <div class="fdc btns">
         <Btn filled text="download all projects" on:click={() => onDownload('all')} />

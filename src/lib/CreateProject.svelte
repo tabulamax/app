@@ -24,7 +24,7 @@
 <Btn text="NEW PROJECT" outlined on:click={() => (modalIsOpen = true)} />
 
 {#if modalIsOpen}
-  <Modal blurBG on:close={() => (modalIsOpen = false)}>
+  <Modal on:close={() => (modalIsOpen = false)}>
     <ModalCard title="CREATE NEW PROJECT" on:close={() => (modalIsOpen = false)}>
       <form class="form alpha fdc g1" on:submit|preventDefault={handleSubmit}>
         <Field label="Title">

@@ -25,7 +25,13 @@
 
       <main style="font-size: {$font.size}px;" class={$font.family}>
         <div class="fsb g1 menu-placing">
-          <Btn accent="alpha" filled iconOnly on:click={() => (open = !open)}>
+          <Btn
+            accent="alpha"
+            tooltip="toggle sidebar"
+            filled
+            iconOnly
+            on:click={() => (open = !open)}
+          >
             <Icon name="menu" />
           </Btn>
 
