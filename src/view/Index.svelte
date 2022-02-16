@@ -1,5 +1,5 @@
 <script>
-  import { Btn, Icon } from '@kazkadien/svelte';
+  import { Btn, Icon, Tooltip } from '@kazkadien/svelte';
   import SidePanel from '$lib/SidePanel.svelte';
   import SavePlacing from '$lib/SavePlacing.svelte';
   import TableGrid from '$lib/TableGrid.svelte';
@@ -25,13 +25,8 @@
 
       <main style="font-size: {$font.size}px;" class={$font.family}>
         <div class="fsb g1 menu-placing">
-          <Btn
-            accent="alpha"
-            tooltip="toggle sidebar"
-            filled
-            iconOnly
-            on:click={() => (open = !open)}
-          >
+          <Btn accent="alpha" filled iconOnly on:click={() => (open = !open)}>
+            <Tooltip text="toggle sidebar" />
             <Icon name="menu" />
           </Btn>
 

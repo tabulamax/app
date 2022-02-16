@@ -1,5 +1,5 @@
 <script>
-  import { Btn, Field, Snackbar } from '@kazkadien/svelte';
+  import { Btn, Field, Snackbar, Tooltip } from '@kazkadien/svelte';
   import MyIcon from './MyIcon.svelte';
   import SnapActions from './SnapActions.svelte';
 
@@ -117,6 +117,7 @@
 
         {#if is_current}
           <Btn on:click={onEdit} iconOnly accent="alpha">
+            <Tooltip text="edit project" />
             <MyIcon name="edit" />
           </Btn>
         {/if}

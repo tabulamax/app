@@ -81,7 +81,7 @@
       <header class="fdc">
         <Btn on:click={onCopyToClipboard}>
           <MyIcon name="content_copy" />
-          <span>Copy To Clipboard</span>
+          <b>Copy To Clipboard</b>
         </Btn>
       </header>
 
@@ -113,7 +113,9 @@
     border-bottom: 1px solid var(--line);
     display: flex;
   }
-
+  header :global(.btn::after) {
+    z-index: 0;
+  }
   pre {
     padding-bottom: 15vh;
   }

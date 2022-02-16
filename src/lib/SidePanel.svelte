@@ -1,5 +1,5 @@
 <script>
-  import { Btn, Dropdown, Icon, ThemeSelect } from '@kazkadien/svelte';
+  import { Btn, Dropdown, Icon, ThemeSelect, Tooltip } from '@kazkadien/svelte';
   import ImpExp from './ImpExp.svelte';
   import CreateProject from './CreateProject.svelte';
   import CreateSnap from './CreateSnap.svelte';
@@ -38,8 +38,8 @@
       filled={$showOnlyKeys}
       outlined={!$showOnlyKeys}
       on:click={() => ($showOnlyKeys = !$showOnlyKeys)}
-      tooltip="show only primary & foreign keys"
     >
+      <Tooltip text="show only primary & foreign keys" position="bottom" />
       <MyIcon name="key" />
     </Btn>
   </div>
@@ -54,6 +54,7 @@
     /* outline: 3px dotted blueviolet; */
     border: 1px solid var(--line) !important;
     padding-inline: 0.33rem !important;
+    z-index: 6;
   }
 
   form > * {

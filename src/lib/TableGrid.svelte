@@ -1,5 +1,5 @@
 <script>
-  import { Btn, Modal, Icon } from '@kazkadien/svelte';
+  import { Btn, Modal, Icon, Tooltip } from '@kazkadien/svelte';
   import MyIcon from './MyIcon.svelte';
   import Table from './Table.svelte';
   import ManageTable from './ManageTable.svelte';
@@ -120,12 +120,12 @@
         >
           <Btn
             on:click={() => (boxIdx = i)}
-            tooltip="add table"
             iconOnly
             accent="alpha"
             colored
             disabled={$activeProject.snapName !== 'current'}
           >
+            <Tooltip text="add table" />
             <MyIcon name="post_add" />
           </Btn>
 
@@ -134,11 +134,11 @@
               $board.tables.splice(i, 0, null);
               $board.tables = $board.tables;
             }}
-            tooltip="add cell"
             iconOnly
             accent="beta"
             colored
           >
+            <Tooltip text="add cell" />
             <Icon name="add" />
           </Btn>
 
@@ -147,11 +147,11 @@
               $board.tables.splice(i, 1);
               $board.tables = $board.tables;
             }}
-            tooltip="remove cell"
             iconOnly
             accent="danger"
             colored
           >
+            <Tooltip text="remove cell" />
             <Icon name="remove" />
           </Btn>
         </div>
@@ -163,11 +163,11 @@
     <div class="dropzone fce">
       <Btn
         on:click={() => ($board.tables = [...$board.tables, null])}
-        tooltip="add cell"
         iconOnly
         accent="beta"
         colored
       >
+        <Tooltip text="add cell" />
         <Icon name="add" />
       </Btn>
     </div>
