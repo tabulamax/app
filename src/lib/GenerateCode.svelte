@@ -113,9 +113,6 @@
     border-bottom: 1px solid var(--line);
     display: flex;
   }
-  header :global(.btn::after) {
-    z-index: 0;
-  }
   pre {
     padding-bottom: 15vh;
   }

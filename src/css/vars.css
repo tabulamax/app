@@ -2,16 +2,3 @@
   --min-table-width: calc(34ch + 6em);
   --max-table-width: calc(42ch + 6em);
 }
-
-.tooltip {
-  background-color: hsla(0, 0%, 9%, 0.9);
-}
-
-*:focus-visible > .tooltip,
-*:hover > .tooltip {
-  opacity: 1;
-}
-
-/* .btn { */
-/*   z-index: 99999; */
-/* } */
