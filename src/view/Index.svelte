@@ -45,6 +45,9 @@
 {/if}
 
 <style>
+  .Mono {
+    font-family: 'Courier New', Courier, monospace;
+  }
   .Roboto {
     font-family: 'Roboto';
   }

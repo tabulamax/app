@@ -141,7 +141,7 @@ export { DATATYPES_POSTGRES, DATATYPES_KNEX, DATATYPES_SQLITE, DATATYPES_2_DTS, 
 
 export const FONT = {
   sizes: [10, 12, 14, 16, 18, 20, 24, 28],
-  families: ['Default', 'Roboto', 'Syne']
+  families: ['Default', 'Mono', 'Roboto', 'Syne']
 };
 
 export const KEYS = ['', 'PK', 'FK'];
