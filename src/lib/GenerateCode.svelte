@@ -1,5 +1,5 @@
 <script>
-  import { Btn, Modal, Toast, Snackbar, DropdownMenuList, Dropdown } from '@kazkadien/svelte';
+  import { Btn, Modal, Toast, Snackbar, Dropdown } from '@kazkadien/svelte';
   import MyIcon from './MyIcon.svelte';
   import ModalCard from './ModalCard.svelte';
 
@@ -51,25 +51,19 @@
 </script>
 
 <div class="">
-  <Dropdown withArrows top hoverable grow outlined colored>
+  <Dropdown withArrows place="top" grow variant="outlined">
     <svelte:fragment slot="dropbtn">
       <MyIcon name="code" />
       <b>Code</b>
     </svelte:fragment>
 
-    <DropdownMenuList accent="">
+    <div class="menu">
       {#each _tech as tech}
-        <button class="menu-list-item" on:click={() => handle(tech)}>{tech}</button>
+        <button class="btn text" on:click={() => handle(tech)}>{tech}</button>
       {/each}
-    </DropdownMenuList>
+    </div>
   </Dropdown>
 </div>
-<!-- {#each _tech as tech} -->
-<!--   <Btn outlined on:click={() => handle(tech)}> -->
-<!--     <MyIcon name="code" /> -->
-<!--     <span>{tech}</span> -->
-<!--   </Btn> -->
-<!-- {/each} -->
 
 {#if snack}
   <Snackbar on:close={() => (snack = '')} accent="alpha" body={snack} iconName="check_circle" />
@@ -79,7 +73,7 @@
   <Modal on:close={() => (modalIsOpen = false)}>
     <ModalCard>
       <header class="fdc">
-        <Btn on:click={onCopyToClipboard}>
+        <Btn on:click={onCopyToClipboard} variant="outlined" round>
           <MyIcon name="content_copy" />
           <b>Copy To Clipboard</b>
         </Btn>
@@ -116,11 +110,11 @@
   pre {
     padding-bottom: 15vh;
   }
-  .menu-list-item {
+  .btn {
     text-transform: uppercase;
   }
 
-  .menu-list-item ~ .menu-list-item {
-    border-top: 1px solid var(--line);
+  .btn:not(:last-child) {
+    border-bottom: 1px solid var(--__fga);
   }
 </style>

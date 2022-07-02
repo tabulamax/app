@@ -1,5 +1,5 @@
 <script>
-  import { Btn, Modal, Icon, Tooltip } from '@kazkadien/svelte';
+  import { Btn, Modal, Icon } from '@kazkadien/svelte';
   import MyIcon from './MyIcon.svelte';
   import Table from './Table.svelte';
   import ManageTable from './ManageTable.svelte';
@@ -121,11 +121,13 @@
           <Btn
             on:click={() => (boxIdx = i)}
             iconOnly
+            variant="text"
             accent="alpha"
             colored
             disabled={$activeProject.snapName !== 'current'}
+            title="add table"
           >
-            <Tooltip text="add table" />
+            <!-- <Tooltip text="add table" /> -->
             <MyIcon name="post_add" />
           </Btn>
 
@@ -135,10 +137,12 @@
               $board.tables = $board.tables;
             }}
             iconOnly
+            variant="text"
             accent="beta"
             colored
+            title="add cell"
           >
-            <Tooltip text="add cell" />
+            <!-- <Tooltip text="add cell" /> -->
             <Icon name="add" />
           </Btn>
 
@@ -148,10 +152,12 @@
               $board.tables = $board.tables;
             }}
             iconOnly
+            variant="text"
             accent="danger"
             colored
+            title="remove cell"
           >
-            <Tooltip text="remove cell" />
+            <!-- <Tooltip text="remove cell" /> -->
             <Icon name="remove" />
           </Btn>
         </div>
@@ -164,10 +170,12 @@
       <Btn
         on:click={() => ($board.tables = [...$board.tables, null])}
         iconOnly
+        variant="text"
         accent="beta"
         colored
+        title="add cell"
       >
-        <Tooltip text="add cell" />
+        <!-- <Tooltip text="add cell" /> -->
         <Icon name="add" />
       </Btn>
     </div>
@@ -200,7 +208,7 @@
   .dropzone {
     max-width: var(--max-table-width);
     padding: 1em 1.5em;
-    box-shadow: 0 0 0.75em -0.3em inset var(--text-alpha);
+    box-shadow: 0 0 0.75em -0.3em inset var(--fg-alpha);
   }
 
   .dropzone > :global(*) {
@@ -211,6 +219,6 @@
   }
 
   .dropzone:global(.over) {
-    outline: 0.33em dotted var(--danger);
+    outline: 0.33em dotted var(--fg-danger);
   }
 </style>

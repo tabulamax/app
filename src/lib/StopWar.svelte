@@ -1,6 +1,6 @@
 <section id="stop-war">
   <a href="https://ukraine.ua/news/stand-with-ukraine/" target="_blank" rel="noopener noreferrer">
-    <span>STOP WAR. STAND WITH UKRAINE 🇺🇦</span>
+    <span>STAND WITH UKRAINE 🇺🇦</span>
   </a>
 </section>
 
@@ -13,7 +13,7 @@
   }
 
   #stop-war a {
-    color: red;
+    color: coral;
     text-decoration: none;
   }
 </style>

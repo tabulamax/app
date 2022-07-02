@@ -1,18 +1,18 @@
 :root {
-  --h-string-attr-name: var(--text);
-  --h-punctuation: var(--text-dim);
-  --h-comment: var(--text-opac);
+  --h-string-attr-name: var(--fg);
+  --h-punctuation: var(--fg1);
+  --h-comment: var(--fga);
 
-  --h-function-attr-value: var(--text-danger);
-  --h-atrule: var(--gamma-up);
-  --h-regex-important: var(--danger-up);
+  --h-function-attr-value: var(--fg-danger);
+  --h-atrule: var(--fg-gamma);
+  --h-regex-important: var(--fg-danger);
 
-  --h-keyword-property: var(--text-alpha);
-  --h-tag: var(--text-beta);
-  --h-namespace: var(--text-gamma);
+  --h-keyword-property: var(--fg-alpha);
+  --h-tag: var(--fg-beta);
+  --h-namespace: var(--fg-gamma);
 
   --h-select: hsla(0, 0%, 50%, 0.33);
-  --h-bg: var(--bg-darker);
+  --h-bg: var(--bg1);
   --h-bg: transparent;
 }
 
@@ -90,7 +90,7 @@
 /* box */
 code,
 pre[class*='language-'] {
-  color: var(--text);
+  color: var(--fg);
   background: var(--h-bg);
 
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -127,5 +127,5 @@ pre::-webkit-scrollbar-thumb {
 :not(pre) > code {
   padding: 0.15em 0.2em;
   white-space: normal;
-  background: var(--bg-darker);
+  background: var(--bg1);
 }

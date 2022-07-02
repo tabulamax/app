@@ -21,7 +21,7 @@
   }
 </script>
 
-<Btn text="NEW PROJECT" outlined on:click={() => (modalIsOpen = true)} />
+<Btn text="NEW PROJECT" variant="outlined" on:click={() => (modalIsOpen = true)} />
 
 {#if modalIsOpen}
   <Modal on:close={() => (modalIsOpen = false)}>
@@ -36,7 +36,7 @@
         </Field>
 
         <div class="fce">
-          <Btn filled text="Create" type="submit" accent="alpha" />
+          <Btn text="Create" type="submit" accent="alpha" />
         </div>
       </form>
     </ModalCard>

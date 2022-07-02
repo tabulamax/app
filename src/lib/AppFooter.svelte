@@ -21,7 +21,7 @@
 
 <style>
   footer {
-    background-color: var(--bg-darkest);
+    background-color: var(--bg2);
     border-top: 1px solid var(--line);
     /* background-color: var(--alpha-bright); */
   }
@@ -33,6 +33,6 @@
   }
 
   a {
-    color: var(--text);
+    color: var(--fg);
   }
 </style>

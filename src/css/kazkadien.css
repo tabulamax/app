@@ -1,0 +1,4 @@
+details.dropdown > .menu {
+  background-color: var(--bg);
+  border: 1px solid var(--__fga, var(--fga));
+}

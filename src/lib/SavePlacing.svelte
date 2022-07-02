@@ -15,7 +15,7 @@
   }
 </script>
 
-<Btn on:click={onSavePos} accent="alpha" filled>
+<Btn on:click={onSavePos} accent="alpha" variant="outlined">
   <MyIcon name="grid_view" />
   <b>save placing</b>
 </Btn>

@@ -12,7 +12,7 @@
     <header class="fsb">
       <h3>{title}</h3>
 
-      <Btn accent="danger" iconOnly on:click={() => dispatch('close')}>
+      <Btn accent="danger" variant="text" iconOnly on:click={() => dispatch('close')}>
         <Icon name="close" />
       </Btn>
     </header>

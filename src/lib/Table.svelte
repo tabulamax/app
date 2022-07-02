@@ -1,5 +1,5 @@
 <script>
-  import { Btn, Tooltip } from '@kazkadien/svelte';
+  import { Btn } from '@kazkadien/svelte';
   import MyIcon from './MyIcon.svelte';
 
   import { createEventDispatcher } from 'svelte';
@@ -122,23 +122,46 @@
   >
     <h3>{table.name}</h3>
 
-    <Btn on:click={() => dispatch('edit')} colored iconOnly accent="alpha" disabled={!editable}>
-      <Tooltip text="edit table" />
+    <Btn
+      on:click={() => dispatch('edit')}
+      colored
+      iconOnly
+      variant="text"
+      accent="alpha"
+      disabled={!editable}
+      title="add table"
+    >
+      <!-- <Tooltip text="edit table" /> -->
       <MyIcon name="edit" />
     </Btn>
 
-    <Btn on:click={() => (table.isDone = !table.isDone)} colored iconOnly accent="beta">
-      <Tooltip text="done" />
+    <Btn
+      on:click={() => (table.isDone = !table.isDone)}
+      colored
+      iconOnly
+      variant="text"
+      accent="beta"
+      title="done"
+    >
+      <!-- <Tooltip text="done" /> -->
       <MyIcon name={table.isDone ? 'done_all' : 'remove_done'} />
     </Btn>
 
     {#if !confirm}
-      <Btn on:click={onDelete} iconOnly disabled={!editable} colored accent="danger">
-        <Tooltip text="double click to delete table" />
+      <Btn
+        on:click={onDelete}
+        title="double click to delete table"
+        iconOnly
+        variant="text"
+        disabled={!editable}
+        colored
+        accent="danger"
+      >
+        <!-- <Tooltip text="double click to delete table" /> -->
         <MyIcon name="delete" />
       </Btn>
     {:else}
-      <Btn on:click={() => dispatch('delete')} iconOnly colored accent="danger">
+      <Btn on:click={() => dispatch('delete')} iconOnly variant="text" colored accent="danger">
         <MyIcon name="delete_forever" />
       </Btn>
     {/if}
@@ -194,15 +217,17 @@
 
 <style>
   .table {
-    --aa: hsla(var(--hue-sat-alpha), 85%, 1);
-    --bb: hsla(var(--hue-sat-beta), 95%, 1);
-    --cc: hsla(var(--hue-sat-gamma), 95%, 1);
+    --_lightness: 85%;
 
-    --table-header: var(--bg-darkest);
+    --aa: hsl(var(--hue-alpha) var(--saturation) var(--_lightness));
+    --bb: hsl(var(--hue-beta) var(--saturation) var(--_lightness));
+    /* --cc: hsl(var(--hue-gamma) var(--saturation) var(--_lightness)); */
+
+    --table-header: var(--bg2);
     --table-header-done: var(--bb);
 
-    --table-keys: var(--bg-darker);
-    --table-col-hover: var(--bg-darker);
+    --table-keys: var(--bg1);
+    --table-col-hover: var(--bg1);
 
     --border-color: var(--aa);
     --border-color: var(--line);
@@ -218,16 +243,14 @@
     border-color: var(--border-color);
 
     /* background-color: transparent; */
-    background-color: var(--bg-dark);
+    background-color: var(--bg1);
 
     width: 100%;
     max-width: var(--max-table-width);
   }
 
   :global(html.dark) .table {
-    --aa: hsla(var(--hue-sat-alpha), 10%, 1);
-    --bb: hsla(var(--hue-sat-beta), 9%, 1);
-    --cc: hsla(var(--hue-sat-gamma), 11%, 1);
+    --_lightness: 14%;
   }
 
   /* TABLE HEAD */
@@ -251,7 +274,7 @@
     padding: 1em;
     margin: 0;
     font-weight: normal;
-    color: var(--text);
+    color: var(--fg);
   }
   /* TABLE HEAD */
 
@@ -292,7 +315,7 @@
 
   li.highlight-FK > div,
   li.highlight-PK > div {
-    outline: 0.2em solid var(--danger);
+    outline: 0.2em solid var(--fg-danger);
   }
 
   li ~ li {
@@ -308,7 +331,7 @@
   mark {
     background-color: transparent;
     font-weight: bold;
-    color: var(--danger);
+    color: var(--fg-danger);
   }
 
   .draggable {
@@ -317,6 +340,6 @@
   }
 
   .over {
-    outline: 0.2em dotted var(--danger);
+    outline: 0.2em dotted var(--fg-danger);
   }
 </style>

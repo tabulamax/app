@@ -1,5 +1,5 @@
 <script>
-  import { Btn, Field, Snackbar, Tooltip } from '@kazkadien/svelte';
+  import { Btn, Field, Snackbar } from '@kazkadien/svelte';
   import MyIcon from './MyIcon.svelte';
   import SnapActions from './SnapActions.svelte';
 
@@ -88,17 +88,17 @@
         </Field>
 
         <div class="btns fsb g1">
-          <Btn on:click={onEditingDone} filled>
+          <Btn on:click={onEditingDone}>
             <MyIcon name="done_all" />
             <b>done</b>
           </Btn>
           {#if !is_delete}
-            <Btn on:click={onDelete} filled accent="danger">
+            <Btn on:click={onDelete} accent="danger">
               <MyIcon name="delete" />
               <b>delete project</b>
             </Btn>
           {:else}
-            <Btn on:click={onConfirmDelete} filled accent="danger">
+            <Btn on:click={onConfirmDelete} accent="danger">
               <MyIcon name="delete_forever" />
               <b>click to confirm delete</b>
             </Btn>
@@ -116,8 +116,7 @@
         </header>
 
         {#if is_current}
-          <Btn on:click={onEdit} iconOnly accent="alpha">
-            <Tooltip text="edit project" />
+          <Btn on:click={onEdit} iconOnly accent="alpha" variant="text" title="edit project">
             <MyIcon name="edit" />
           </Btn>
         {/if}
@@ -148,7 +147,7 @@
 
   .card {
     background-color: var(--bg);
-    color: var(--text);
+    color: var(--fg);
     padding: 1em 2em 3em;
     border: 1px solid var(--line);
     border-radius: 1rem;
@@ -165,10 +164,10 @@
     align-items: baseline;
   }
   h2 {
-    color: var(--text-alpha);
+    color: var(--fg-alpha);
   }
   h4 {
-    color: var(--text-beta);
+    color: var(--fg-beta);
   }
 
   p {

@@ -1,7 +1,7 @@
 import '@kazkadien/svelte/css/all.css';
 import './css/app.css';
-import './css/custom-colors.css';
 import './css/vars.css';
+import './css/kazkadien.css';
 
 import App from './App.svelte';
 

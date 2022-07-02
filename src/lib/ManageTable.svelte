@@ -111,80 +111,80 @@
             table = table;
           }}
           iconOnly
-          rounded
-          colored
-          outlined
+          variant="outlined"
           accent="danger"
         >
           <MyIcon name="delete" />
         </Btn>
 
-        <Field label="Key">
-          <select bind:value={col.key}>
-            {#each KEYS as k}
-              <option value={k}>{k}</option>
-            {/each}
-          </select>
-        </Field>
-
-        <Field label="References">
-          {#if col.key !== '' && col.references}
-            <select bind:value={col.references.tableId} class="ct references">
-              {#each projectTables as ct}
-                <option value={ct.id}>{ct.name}</option>
-              {/each}
-            </select>
-          {:else}
-            <select disabled class="references">
-              <option value="" />
-            </select>
-          {/if}
-        </Field>
-
-        <Field label="Column Name">
-          <input type="text" bind:value={col.name} required />
-        </Field>
-
-        <Field label="Datatype" accent="beta">
-          <select bind:value={col.datatype} class="ct" required>
-            {#each Object.entries(DATATYPES_KNEX) as [k, val]}
-              <option value={k}>{val}</option>
-            {/each}
-          </select>
-        </Field>
-
-        {#if col.key !== 'PK'}
-          <Field label="Nullable">
-            <select bind:value={col.nullable} class:trussy={col.nullable}>
-              {#each [true, false] as val}
-                <option value={val}>{val}</option>
+        <div class="fields">
+          <Field label="Key">
+            <select bind:value={col.key}>
+              {#each KEYS as k}
+                <option value={k}>{k}</option>
               {/each}
             </select>
           </Field>
-        {/if}
 
-        {#if col.key === ''}
-          <Field label="Unique">
-            <select bind:value={col.unique} class:trussy={col.unique}>
-              {#each [true, false] as val}
-                <option value={val}>{val}</option>
-              {/each}
-            </select>
+          <Field label="References">
+            {#if col.key !== '' && col.references}
+              <select bind:value={col.references.tableId} class="ct references">
+                {#each projectTables as ct}
+                  <option value={ct.id}>{ct.name}</option>
+                {/each}
+              </select>
+            {:else}
+              <select disabled class="references">
+                <option value="" />
+              </select>
+            {/if}
           </Field>
-        {/if}
 
-        {#if col.references?.tableId}
-          <Field label="On Delete">
-            <select bind:value={col.references.onDelete} class:trussy={col.unique}>
-              {#each Object.entries(ACTIONS) as [k, val]}
+          <Field label="Column Name">
+            <input type="text" bind:value={col.name} required />
+          </Field>
+
+          <Field label="Datatype" accent="beta">
+            <select bind:value={col.datatype} class="ct" required>
+              {#each Object.entries(DATATYPES_KNEX) as [k, val]}
                 <option value={k}>{val}</option>
               {/each}
             </select>
           </Field>
-        {/if}
+
+          {#if col.key !== 'PK'}
+            <Field label="Nullable">
+              <select bind:value={col.nullable} class:trussy={col.nullable}>
+                {#each [true, false] as val}
+                  <option value={val}>{val}</option>
+                {/each}
+              </select>
+            </Field>
+          {/if}
+
+          {#if col.key === ''}
+            <Field label="Unique">
+              <select bind:value={col.unique} class:trussy={col.unique}>
+                {#each [true, false] as val}
+                  <option value={val}>{val}</option>
+                {/each}
+              </select>
+            </Field>
+          {/if}
+
+          {#if col.references?.tableId}
+            <Field label="On Delete">
+              <select bind:value={col.references.onDelete} class:trussy={col.unique}>
+                {#each Object.entries(ACTIONS) as [k, val]}
+                  <option value={k}>{val}</option>
+                {/each}
+              </select>
+            </Field>
+          {/if}
+        </div>
 
         <div class="btn-add">
-          <Btn on:click={() => onAddColumn(i + 1)} iconOnly rounded outlined colored accent="gamma">
+          <Btn on:click={() => onAddColumn(i + 1)} iconOnly variant="outlined" accent="gamma">
             <MyIcon name="add" />
           </Btn>
         </div>
@@ -192,7 +192,7 @@
     {/each}
 
     <div class="fce sub">
-      <Btn type="submit" filled text={isEdit ? 'Update' : 'Create'} />
+      <Btn type="submit" text={isEdit ? 'Update' : 'Create'} />
     </div>
   </form>
 </ModalCard>
@@ -206,28 +206,36 @@
   }
 
   .t-name {
-    background-color: var(--bg-darker);
+    background-color: var(--bg1);
     padding: 1rem;
     border-radius: 1rem;
     margin-bottom: 1rem;
   }
 
   .col {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: flex-end;
-    flex-wrap: wrap;
-    gap: 1ch;
+    gap: 1.5ch;
+
     padding: 0.25rem 1rem 1rem;
     border-radius: 1rem;
 
     /* background-color: darkkhaki; */
   }
 
+  .col > .fields {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1ch;
+  }
+
   .col:is(:focus-within) {
-    background-color: var(--bg-darker);
+    background-color: var(--bg1);
   }
   .col:is(:hover) {
-    background-color: var(--bg-darkest);
+    background-color: var(--bg2);
   }
 
   select.trussy {

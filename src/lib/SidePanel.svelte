@@ -1,5 +1,5 @@
 <script>
-  import { Btn, Dropdown, Icon, ThemeSelect, Tooltip } from '@kazkadien/svelte';
+  import { Btn, Dropdown, Icon, ThemeSelect } from '@kazkadien/svelte';
   import ImpExp from './ImpExp.svelte';
   import CreateProject from './CreateProject.svelte';
   import CreateSnap from './CreateSnap.svelte';
@@ -27,7 +27,7 @@
   </div>
 
   <div class="fse g1">
-    <Dropdown outlined iconOnly top hoverable>
+    <Dropdown variant="outlined" iconOnly place="top">
       <Icon name="brightness_low" slot="dropbtn" />
       <ThemeSelect heading="THEME" />
     </Dropdown>
@@ -35,11 +35,11 @@
     <Btn
       iconOnly
       accent="alpha"
-      filled={$showOnlyKeys}
-      outlined={!$showOnlyKeys}
+      variant={$showOnlyKeys ? 'filled' : 'outlined'}
       on:click={() => ($showOnlyKeys = !$showOnlyKeys)}
+      title="show only primary & foreign keys"
     >
-      <Tooltip text="show only primary & foreign keys" position="bottom" />
+      <!-- <Tooltip text="show only primary & foreign keys" position="bottom" /> -->
       <MyIcon name="key" />
     </Btn>
   </div>

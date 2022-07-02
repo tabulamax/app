@@ -27,17 +27,17 @@
 
 <section id="snap-actions" class="fsb">
   {#if !confirm.makeCurrent}
-    <Btn text="copy to current" on:click={() => onClick('makeCurrent')} accent="alpha" filled />
+    <Btn text="copy to current" on:click={() => onClick('makeCurrent')} accent="alpha" />
   {:else}
-    <Btn text="click to confirm" on:click={onMakeSnapCurrent} accent="alpha" filled />
+    <Btn text="click to confirm" on:click={onMakeSnapCurrent} accent="alpha" />
   {/if}
 
   {#if !confirm.delete}
-    <Btn on:click={() => onClick('delete')} accent="danger" filled>
+    <Btn on:click={() => onClick('delete')} accent="danger">
       <MyIcon name="delete" /><span>delete snap</span>
     </Btn>
   {:else}
-    <Btn on:click={deleteSnap} accent="danger" filled>
+    <Btn on:click={deleteSnap} accent="danger">
       <MyIcon name="delete_forever" /><span>click to confirm</span>
     </Btn>
   {/if}

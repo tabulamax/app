@@ -118,15 +118,15 @@
   />
 {/if}
 
-<Btn text="Transfer" outlined on:click={() => (modalIsOpen = true)} />
+<Btn text="Transfer" variant="outlined" on:click={() => (modalIsOpen = true)} />
 
 {#if modalIsOpen}
   <Modal on:close={() => (modalIsOpen = false)}>
     <ModalCard title="Download / Upload" on:close={() => (modalIsOpen = false)}>
       <div class="fdc btns">
-        <Btn filled text="download all projects" on:click={() => onDownload('all')} />
+        <Btn text="download all projects" on:click={() => onDownload('all')} />
 
-        <Btn filled text="download current project" on:click={() => onDownload('current')} />
+        <Btn text="download current project" on:click={() => onDownload('current')} />
 
         <div class="fdc">
           <input id="downloadFile" type="file" accept="application/json" on:change={onImport} />
