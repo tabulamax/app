@@ -5,6 +5,7 @@ import { composeDTypes } from './composeDTypes';
 
 import { board } from '../store/projects';
 import { get } from 'svelte/store';
+import { composeMermaidERD } from './composeMermaidERD';
 
 /** @typedef {import("../typings/types").Tech} Tech*/
 
@@ -34,6 +35,10 @@ export const generateCode = (ctx) => {
 
     case 'sql: sqlite3':
       code = composeCreateAndDropTablesSQL(tables, 'sqlite');
+      break;
+
+    case 'erd':
+      code = composeMermaidERD(tables);
       break;
 
     default:

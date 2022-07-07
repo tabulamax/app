@@ -5,9 +5,10 @@
   const dispatch = createEventDispatcher();
   export let title = '';
   export let large = false;
+  export let fullWidth = false;
 </script>
 
-<div class="card alpha" class:large>
+<div class="card alpha" class:large class:fullWidth>
   {#if title}
     <header class="fsb">
       <h3>{title}</h3>
@@ -44,6 +45,9 @@
 
   .card.large {
     width: min(100%, 120ch);
+  }
+  .card.fullWidth {
+    width: initial;
   }
 
   .card > header {

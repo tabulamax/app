@@ -62,7 +62,13 @@ export type MyIcon =
   | 'delete_forever'
   | 'key';
 
-export type Tech = 'js: knex' | 'js: references' | 'js: d.ts' | 'sql: postgres' | 'sql: sqlite3';
+export type Tech =
+  | 'erd'
+  | 'js: knex'
+  | 'js: references'
+  | 'js: d.ts'
+  | 'sql: postgres'
+  | 'sql: sqlite3';
 
 export interface Datatypes {
   bigInteger: string;

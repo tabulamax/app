@@ -9,6 +9,7 @@
   import MyIcon from './MyIcon.svelte';
 
   import { showOnlyKeys } from '../store/projects';
+  import Diagram from './Diagram.svelte';
 </script>
 
 <form class="form fdc g1 alpha" on:submit|preventDefault>
@@ -46,6 +47,7 @@
 
   <div class="sec">
     <GenerateCode />
+    <Diagram />
   </div>
 </form>
 

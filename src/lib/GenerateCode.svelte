@@ -59,7 +59,15 @@
 
     <div class="menu">
       {#each _tech as tech}
-        <button class="btn text" on:click={() => handle(tech)}>{tech}</button>
+        <button
+          class="btn text"
+          on:click={(ev) => {
+            ev.currentTarget.closest('details').open = false;
+            handle(tech);
+          }}
+        >
+          {tech}
+        </button>
       {/each}
     </div>
   </Dropdown>
