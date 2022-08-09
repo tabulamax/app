@@ -13,7 +13,9 @@ export function composeRefObjects(tables) {
   };
 
   let tn = '';
-  let _tn = '';
+  let atn = '';
+
+  let atc = '';
 
   let exportz = '';
   let exportzAliases = '';
@@ -31,44 +33,62 @@ export function composeRefObjects(tables) {
 
     const tAlias = composeUniqueAlias(initAlias);
     // console.log({ tAlias })
-    aliases += `\n  ${tName}: '${tAlias}',`;
+    aliases += `\n  ${tName}: "${tAlias}",`;
 
-    exportz += `\n  ${tName},\n  _${tName},`;
-    exportzAliases += `\n  ${tName} as ${tAlias},\n  _${tName} as _${tAlias},`;
+    exportz += `\n  ${tName},`;
+    exportzAliases += `\n  ${tName} as ${tAlias},`;
 
-    tn += `\n  ${tName}: '${tName}',`;
-    _tn += `\n  ${tName}: { [alias.${tName}]: tn.${tName} },`;
+    tn += `\n  ${tName}: "${tName}",`;
+    atn += `\n  ${tName}: { [alias.${tName}]: tn.${tName} },`;
+    atc += `\n  ${tName}: withAlias(${tName}, alias.${tName}),`;
 
     /* Table columns */
-    const reducer = (acc, col) => acc + `\n\t${col.name}: '${col.name}',`;
+    const reducer = (acc, col) => acc + `\n\t${col.name}: "${col.name}",`;
     const props = table.columns.reduce(reducer, '');
 
     let columns = `\n\n/** @enum {string} ${tName.toUpperCase()} columns */`;
     columns += `\nconst ${tName} = {${props}\n}`;
 
-    const _tName = '_' + tName;
-
-    let _columns = `\n\n/** @enum {string} ${tName.toUpperCase()} aliased columns */`;
-
-    _columns += `\nconst ${_tName} = { ...${tName} }`;
-    _columns += `\nObject.entries(${_tName}).forEach(([key, val]) => {`;
-    _columns += `\n  ${_tName}[key] = \`\${alias.${tName}}.\${val}\``;
-    _columns += `\n})`;
-
-    refs += columns + _columns;
+    refs += columns;
   });
 
   const fileName = '\n/* tableReferences.js | dbReferences.js */';
 
-  const tableNames = `\n\n/** @enum {string} Table names */\nconst tn = {${tn}\n}`;
+  const myTableNames = `\n\n/** @enum {string} Table names */\nconst tn = {${tn}\n}`;
 
-  const $tableNames = `\n\n/** @enum {object} Aliased table names */\nconst _tn = {${_tn}\n}`;
+  const myAliasedTableNames = `\n\n/** @enum {object} Aliased table names */\nconst atn = {${atn}\n}`;
 
-  const alias = `\n\n/* TODO: check correctness */\nconst alias = {${aliases}\n}`;
+  const myAliases = `\n\n/* TODO: check correctness */\nconst alias = {${aliases}\n}`;
 
-  const exportRefs = `\n\nexport {\n\ttn,\n\t_tn,${exportz}\n${exportzAliases}\n}`;
+  const myAliasedTablesColumns = `\n\n/** @enum {object} Aliased tables columns */\nconst atc = {${atc}\n}`;
 
-  const code = fileName + tableNames + alias + $tableNames + refs + exportRefs;
+  const myExports = `\n\nexport {\n\ttn,\n\tatn,\n\tatc,\n${exportz}\n${exportzAliases}\n}`;
+
+  const myFunc = `
+
+/**
+ * @template T
+ * @param {T} table
+ * @param {string} alias
+ * @returns {{ [K in keyof T]: string; }}
+ */
+function withAlias(table, alias) {
+  const t = {};
+  Object.entries(table).forEach(([k, v]) => (t[k] = \`\${alias}.\${v}\`));
+  // @ts-ignore
+  return t;
+}
+  `;
+
+  const code =
+    fileName +
+    myTableNames +
+    myAliases +
+    myAliasedTableNames +
+    refs +
+    myAliasedTablesColumns +
+    myExports +
+    myFunc;
 
   return code;
 }
