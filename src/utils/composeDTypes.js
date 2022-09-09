@@ -1,37 +1,23 @@
 import { DATATYPES_2_DTS } from '../data/constants';
-
-/** @param {string} string */
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+import { capitalizeAll } from './strings.js';
 
 /** @param tables { import("../typings/types").Table[] } */
 export function composeDTypes(tables) {
-  const EI = '\nexport interface';
+  const ei = '\nexport interface';
 
-  let create = '';
+  let code = '';
 
   tables.forEach((table) => {
-    let entries = '';
-
-    const tn = table.name
-      .split('_')
-      .map((el) => capitalizeFirstLetter(el))
-      .join('');
-
-    create += `${EI} ${tn} {`;
-
-    table.columns.forEach((col) => {
+    const entries = table.columns.reduce((acc, col) => {
       const key = `${col.name}${col.nullable ? '?' : ''}`;
       const type = DATATYPES_2_DTS[col.datatype];
 
-      entries += `\n  ${key}: ${type};`;
-    });
+      return acc + `\n\t${key}: ${type};`;
+    }, '');
 
-    create += entries + '\n}';
+    const TN = capitalizeAll(table.name);
+    code += `${ei} ${TN} { ${entries} \n}\n`;
   });
-
-  const code = create;
 
   return code;
 }

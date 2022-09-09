@@ -67,6 +67,8 @@ export type Tech =
   | 'js: knex'
   | 'js: references'
   | 'js: d.ts'
+  | 'go: types'
+  | 'go: references'
   | 'sql: postgres'
   | 'sql: sqlite3';
 

@@ -128,6 +128,38 @@ const DATATYPES_2_DTS = {
 };
 Object.freeze(DATATYPES_2_DTS);
 
+/** @type {Datatypes} */
+const DATATYPES_2_GO = {
+  bigInteger: 'int',
+  binary: 'byte',
+  boolean: 'bool',
+  date: 'string',
+  datetime: 'string',
+  decimal: 'float32',
+  double: 'float32',
+  enum: 'inteface{}',
+  float: 'float32',
+  geography: 'interface{}',
+  geometry: 'interface{}',
+  identity: 'int',
+  increments: 'int',
+  integer: 'int',
+  json: 'interface{}',
+  jsonb: 'interface{}',
+  point: 'interface{}',
+  specific: 'interface{}',
+  smallint: 'int',
+  string: 'string',
+  text: 'string',
+  time: 'string',
+  timestamp: 'string',
+  uuid: 'string'
+  // uuid: 'uuid.UUID'
+  // mediumint: 'number',
+  // tinyint: 'number',
+};
+Object.freeze(DATATYPES_2_GO);
+
 const ACTIONS = {
   noAction: 'NO ACTION',
   cascade: 'CASCADE',
@@ -137,7 +169,14 @@ const ACTIONS = {
 };
 Object.freeze(ACTIONS);
 
-export { DATATYPES_POSTGRES, DATATYPES_KNEX, DATATYPES_SQLITE, DATATYPES_2_DTS, ACTIONS };
+export {
+  DATATYPES_POSTGRES,
+  DATATYPES_KNEX,
+  DATATYPES_SQLITE,
+  DATATYPES_2_DTS,
+  DATATYPES_2_GO,
+  ACTIONS
+};
 
 export const FONT = {
   sizes: [10, 12, 14, 16, 18, 20, 24, 28],

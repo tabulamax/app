@@ -1,11 +1,13 @@
-import { composeRefObjects } from './composeJSRefs';
-import { composeKnexMigrations } from './composeKnexMigrations';
 import { composeCreateAndDropTablesSQL } from './composeCreateAndDropSQL';
 import { composeDTypes } from './composeDTypes';
+import { composeGOTypes } from './composeGOTypes.js';
+import { composeRefObjects } from './composeJSRefs';
+import { composeKnexMigrations } from './composeKnexMigrations';
 
-import { board } from '../store/projects';
 import { get } from 'svelte/store';
+import { board } from '../store/projects';
 import { composeMermaidERD } from './composeMermaidERD';
+import { composeGORefs } from './composeGORefs.js';
 
 /** @typedef {import("../typings/types").Tech} Tech*/
 
@@ -27,6 +29,14 @@ export const generateCode = (ctx) => {
 
     case 'js: d.ts':
       code = composeDTypes(tables);
+      break;
+
+    case 'go: types':
+      code = composeGOTypes(tables);
+      break;
+
+    case 'go: references':
+      code = composeGORefs(tables);
       break;
 
     case 'sql: postgres':

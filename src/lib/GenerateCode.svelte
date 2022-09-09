@@ -9,6 +9,7 @@
   import Prism from 'prismjs';
   import 'prismjs/components/prism-typescript';
   import 'prismjs/components/prism-sql';
+  import 'prismjs/components/prism-go';
 
   /** @typedef {import("../typings/types").Tech} Tech*/
 
@@ -37,6 +38,8 @@
     // console.log(code);
     if (tech.startsWith('sql:')) {
       prismHTML = Prism.highlight(code, Prism.languages.sql, 'sql');
+    } else if (tech.startsWith('go:')) {
+      prismHTML = Prism.highlight(code, Prism.languages.go, 'go');
     } else if (tech == 'js: d.ts') {
       prismHTML = Prism.highlight(code, Prism.languages.typescript, 'typescript');
     } else {
@@ -47,7 +50,15 @@
   }
 
   /** @type {Tech[]}*/
-  const _tech = ['js: knex', 'js: references', 'js: d.ts', 'sql: postgres', 'sql: sqlite3'];
+  const _tech = [
+    'js: knex',
+    'js: references',
+    'js: d.ts',
+    'go: references',
+    'go: types',
+    'sql: postgres',
+    'sql: sqlite3'
+  ];
 </script>
 
 <div class="">
