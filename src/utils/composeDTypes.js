@@ -9,7 +9,7 @@ export function composeDTypes(tables) {
 
   tables.forEach((table) => {
     const entries = table.columns.reduce((acc, col) => {
-      const key = `${col.name}${col.nullable && '?'}`;
+      const key = `${col.name}${col.nullable ? '?' : ''}`;
       const type = DATATYPES_2_DTS[col.datatype];
 
       return acc + `\n\t${key}: ${type}${col.nullable ? ' | null' : ''};`;
