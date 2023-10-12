@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<script>
+			(function () {
+				const THEME = 'my-theme';
+				const DARK = 'dark';
+
+				const myTheme = localStorage.getItem(THEME);
+
+				if (myTheme) {
+					if (myTheme === DARK) document.documentElement.classList.add(DARK);
+					return;
+				}
+
+				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					document.documentElement.classList.add(DARK);
+				}
+			})();
+		</script>
+
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+@import '@kazkadien/svelte/styles.css' layer(kazka);
+
+:root {
+	--line: var(--fl);
+	--border: 1px solid var(--fl);
+}
+
+details.dropdown {
+	width: 100%;
+	min-width: 1px;
+	/* align-self: stretch; */
+	/* justify-self: stretch; */
+	/* outline: 1px solid red; */
+
+	& > summary {
+		width: 100%;
+		/* background: transparent; */
+		&:not(:hover):not(:focus) {
+			background: var(--bg);
+		}
+	}
+}
